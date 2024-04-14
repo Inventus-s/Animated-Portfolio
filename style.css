@@ -210,6 +210,69 @@ main {
       }
     }
 
+    .about{
+      width: 100%;
+      height: 100vh;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .left{
+        width: 30%;
+
+        .title-mobile,.o-mobile{
+          display: none;
+        }
+
+        p{
+          font-size: 2.75vw;
+          margin-top: 25vh;
+          color: #414141;
+          line-height: 1;
+
+          .o-accent {
+            font-family: MAZIUS;
+            font-style: italic;
+            font-weight: 600;
+            color: #14ce92;
+          }
+        }
+      }
+
+      .right{
+        margin-top: 5vh;
+        width: 35%;
+        height: 100%;
+        position: relative;
+
+        .image-container{
+          width: 100%;
+          position: absolute;
+          z-index: 3;
+          top: 0%;
+          left: 0%;
+          border-radius: 50px;
+          overflow: hidden;
+
+          img{
+            height: 100%;
+            width: 100%;
+          }
+
+          &:nth-child(1){
+            transform: translate(-70%,5%) rotate(-15deg);
+          }
+          &:nth-child(2){
+            transform: translate(-30%,20%) rotate(-10deg);
+          }
+          &:nth-child(3){
+            transform: translate(0%,40%) rotate(-5deg);
+          }
+        }
+      }
+    }
+    
     .work {
       width: 100%;
       position: relative;
@@ -522,23 +585,69 @@ main {
       }
 
       .c-play-btn{
-        position: relative;
         display: block;
+        position: relative;
         width: 100%;
+        text-decoration: none;
+        border: 1px solid rgba(150,148,148,.4);
+        margin-top: 25vh ;
+        padding: 24px 0;
+        font-size: 20px;
+        border-radius: 100px;
+        color: #414141;
+        cursor: pointer;
+        overflow: hidden;
 
-        &::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 150px;
-            background-image: url("https://abhishekjha.me/rip.f6d7c4dd.svg");
-            background-size: cover;
-            left: 0;
-            /* bottom: 0%; */
-            /* background-color: red; */
-            /* top: 0; */
-            /* transform: rotate(-180deg) translateY(55%); */
-          }
+        .button__bg{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 0%;
+          background-color: white;
+          height: 100%;
+          border-radius: 200px;
+          opacity: 0;
+          transition: .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        &:hover .button__bg{
+          width: 100%;
+          opacity: 1;
+        }
+
+        &:hover span{
+          color: #111;
+          font-weight: 500;
+        }
+
+        & > span{
+          display: block;
+          text-align: center;
+          position: relative;
+          z-index: 2;
+        }
+
+        .o-accent {
+          font-family: MAZIUS;
+          font-style: italic;
+          font-weight: 600;
+        }
+
+        
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100vw;
+        height: 150px;
+        background-image: url("https://abhishekjha.me/rip.f6d7c4dd.svg");
+        background-size: cover;
+        left: 0;
+        bottom: 0;
+        transform: translateY(60%);
+        /* background-color: red; */
       }
     }
 
