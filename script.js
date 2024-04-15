@@ -113,3 +113,58 @@ locoScroll();
 
 
 // need to master locomotive and gsap scrollTrigger
+
+// scroll using js
+// Get the rotating image element
+// const rotatingImage = document.getElementById('image-container');
+
+// Function to rotate the image
+// function rotateImageOnScroll(event) {
+//   const scrollPosition = window.scrollY; // Get the current scroll position
+//   const rotationAngle = scrollPosition * 0.1; // Adjust the rotation speed
+//   rotatingImage.style.transform = `rotate(${rotationAngle}deg)`; // Apply rotation
+//   console.log('working');
+// }
+
+// Add event listener for scroll event
+// window.addEventListener('mousemove', rotateImageOnScroll);
+
+
+
+// another method
+
+// Initialize ScrollMagic Controller
+var controller = new ScrollMagic.Controller();
+
+// Create a Tween for each image rotation
+var rotateTween1 = gsap.to(".image-container:nth-child(1)", {rotation: 10, ease: "power1.inOut"});
+var rotateTween2 = gsap.to(".image-container:nth-child(2)", {rotation: 10, ease: "power1.inOut"});
+var rotateTween3 = gsap.to(".image-container:nth-child(3)", {rotation: 10, ease: "power1.inOut"});
+
+// Create ScrollMagic Scenes for each image
+var scene1 = new ScrollMagic.Scene({
+    triggerElement: ".image-container:nth-child(1)", // Adjust as needed
+    duration: "100%", // Duration of the animation
+    triggerHook: 0.5 // Trigger point
+})
+.setTween(rotateTween1)
+.addTo(controller);
+
+var scene2 = new ScrollMagic.Scene({
+    triggerElement: ".image-container:nth-child(2)", // Adjust as needed
+    duration: "100%", // Duration of the animation
+    triggerHook: 0.5 // Trigger point
+})
+.setTween(rotateTween2)
+.addTo(controller);
+
+var scene3 = new ScrollMagic.Scene({
+    triggerElement: ".image-container:nth-child(3)", // Adjust as needed
+    duration: "100%", // Duration of the animation
+    triggerHook: 0.5 // Trigger point
+})
+.setTween(rotateTween3)
+.addTo(controller);
+
+
+
