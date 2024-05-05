@@ -79,7 +79,7 @@ function homeAnimation() {
     ease: Power1.out,
   });
 
-  
+
 }
 
 function animateSVG() {
@@ -94,10 +94,23 @@ function animateSVG() {
 
   gsap.to("#Visual>g>g>path,#Visual>g>g>polyline", {
     strokeDashoffset: 0,
-    duration: 1.5,
+    duration: 1,
     ease: Power1.out,
   });
 }
+// function animateSVGarrow() {
+//   const lines = document.querySelectorAll("#arrow>line, #arrow>polyline");
+//   lines.forEach(line => {
+//     const length = line.getTotalLength();
+//     line.style.transition = "stroke-dashoffset 2s";
+//     line.style.strokeDasharray = length;
+//     line.style.strokeDashoffset = length;
+//     line.getBoundingClientRect(); // Trigger reflow
+//     line.style.strokeDashoffset = "0";
+//     console.log("");
+//   });
+// }
+
 
 function locoScroll() {
   const scroll = new LocomotiveScroll({
@@ -106,10 +119,64 @@ function locoScroll() {
   });
 }
 
+// showing hoverCard over image
+function showHoverCard() {
+  let hoverCard = document.querySelector("#cursor").children;
+  let hoverIndex;
+  let workColor;
+  let target;
+  document.querySelectorAll(".hoverCard").forEach((e) => {
+    e.addEventListener("mousemove", (dets) => {
+      target = dets.target;
+      workColor = dets.target.dataset.color;
+      hoverIndex = dets.target.dataset.index;
+      hoverCard[hoverIndex].style.opacity = 1;
+      hoverCard[hoverIndex].style.transform = `translate(${dets.screenX}px,${dets.screenY - 40}px)`;
+      document.querySelector(".work").style.backgroundColor = "#" + workColor;
+      // animateSVGarrow();
+      target.style.filter ="grayscale()";
+    });
+    e.addEventListener("mouseout", () => {
+      target.style.filter = "grayscale(0)";
+      hoverCard[hoverIndex].style.opacity = 0;
+      document.querySelector(".work").style.backgroundColor = "#f2f2f2";
+    });
+  });
+}
+
+
+// hover trigger
+// function hoverTrigger(){
+//   let elementChange = document.querySelectorAll(".project-info > p");
+//   console.log(elementChange);
+//   let hoverCard = document.querySelectorAll(".hoverCard");
+//   hoverCard.forEach((e,i)=>{
+//     e.addEventListener("mousemove", (dets) => {
+//       let targetIndex = dets.target.dataset.index;
+//       elementChange.forEach((elem,index)=>{
+//         console.log(targetIndex);
+//         if(targetIndex == 0){
+//           // console.log(elem);
+//           // elem[0].style.opacity = 1;
+//           // elem[1].style.opacity = 1;
+//         }
+//         // e.style.opacity = 1;
+//         console.log(elem[0]);
+//       })
+//     })
+//     e.addEventListener("mouseleave", () => {
+//       elementChange.forEach(e=>{
+//         e.style.opacity = 0;
+//       })
+//     })
+//   })
+// }
 
 revealToSpan();
 loaderAnimation();
 locoScroll();
+showHoverCard();
+// hoverTrigger();
 
 
 // need to master locomotive and gsap scrollTrigger
@@ -137,34 +204,34 @@ locoScroll();
 var controller = new ScrollMagic.Controller();
 
 // Create a Tween for each image rotation
-var rotateTween1 = gsap.to(".image-container:nth-child(1)", {rotation: 10, ease: "power1.inOut"});
-var rotateTween2 = gsap.to(".image-container:nth-child(2)", {rotation: 10, ease: "power1.inOut"});
-var rotateTween3 = gsap.to(".image-container:nth-child(3)", {rotation: 10, ease: "power1.inOut"});
+var rotateTween1 = gsap.to(".image-container:nth-child(1)", { rotation: 10, ease: "power1.inOut" });
+var rotateTween2 = gsap.to(".image-container:nth-child(2)", { rotation: 10, ease: "power1.inOut" });
+var rotateTween3 = gsap.to(".image-container:nth-child(3)", { rotation: 10, ease: "power1.inOut" });
 
 // Create ScrollMagic Scenes for each image
 var scene1 = new ScrollMagic.Scene({
-    triggerElement: ".image-container:nth-child(1)", // Adjust as needed
-    duration: "100%", // Duration of the animation
-    triggerHook: 0.5 // Trigger point
+  triggerElement: ".image-container:nth-child(1)", // Adjust as needed
+  duration: "100%", // Duration of the animation
+  triggerHook: 0.5 // Trigger point
 })
-.setTween(rotateTween1)
-.addTo(controller);
+  .setTween(rotateTween1)
+  .addTo(controller);
 
 var scene2 = new ScrollMagic.Scene({
-    triggerElement: ".image-container:nth-child(2)", // Adjust as needed
-    duration: "100%", // Duration of the animation
-    triggerHook: 0.5 // Trigger point
+  triggerElement: ".image-container:nth-child(2)", // Adjust as needed
+  duration: "100%", // Duration of the animation
+  triggerHook: 0.5 // Trigger point
 })
-.setTween(rotateTween2)
-.addTo(controller);
+  .setTween(rotateTween2)
+  .addTo(controller);
 
 var scene3 = new ScrollMagic.Scene({
-    triggerElement: ".image-container:nth-child(3)", // Adjust as needed
-    duration: "100%", // Duration of the animation
-    triggerHook: 0.5 // Trigger point
+  triggerElement: ".image-container:nth-child(3)", // Adjust as needed
+  duration: "100%", // Duration of the animation
+  triggerHook: 0.5 // Trigger point
 })
-.setTween(rotateTween3)
-.addTo(controller);
+  .setTween(rotateTween3)
+  .addTo(controller);
 
 
 
