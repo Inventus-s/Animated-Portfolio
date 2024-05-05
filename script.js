@@ -235,3 +235,5 @@ var scene3 = new ScrollMagic.Scene({
 
 
 
+// footer
+let footer = document.querySelector("");
